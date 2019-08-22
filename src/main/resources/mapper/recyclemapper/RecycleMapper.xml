@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ralei.dao.recycledao.RecyleDao">
+
+    <!--回收站查询文件列表-->
+    <select id="selectRecycleFileList" parameterType="com.ralei.pojo.SysFileUpload">
+         SELECT f.file_id,
+               f.file_createDate,
+               f.file_deleteDate,
+               f.file_path,
+               f.file_readAccount,
+               f.file_priority,
+               f.file_kinds,
+               f.file_status,
+               f.action_id,
+               f.file_name,
+               f.file_uploader,
+               f.em_id FROM
+               sys_fileupload AS f WHERE f.file_status=0
+    </select>
+
+    <!--删除文件-->
+    <delete id="deleteFileByFileId" parameterType="integer">
+        DELETE FROM sys_fileupload WHERE file_id=#{fileId,jdbcType=VARCHAR} AND file_status=0;
+    </delete>
+
+    <!--删除文件对应操作记录-->
+    <delete id="deleteRlactionRecord" parameterType="integer">
+        DELETE FROM rl_action_record WHERE file_id=#{fileId}
+    </delete>
+
+    <!--恢复文件-->
+    <update id="recoverFileByFileId" parameterType="integer">
+        UPDATE sys_fileupload SET file_status=1 WHERE file_id=#{fileId,jdbcType=VARCHAR};
+    </update>
+
+    <!--查看文件操作记录-->
+    <select id="selectFileRecordList" parameterType="integer" resultType="com.ralei.pojo.RlActionRecord">
+        SELECT action_id,
+               action_time,
+               action_kinds,
+               action_name,
+               file_id FROM rl_action_record WHERE file_id=#{fileId};
+    </select>
+</mapper>

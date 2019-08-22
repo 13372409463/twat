@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ralei.dao.logindao.LoginDao">
+    <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+        <id column="em_id" jdbcType="INTEGER" property="emId" />
+        <result column="em_name" jdbcType="VARCHAR" property="emName" />
+        <result column="em_phone" jdbcType="VARCHAR" property="emPhone" />
+        <result column="em_position" jdbcType="INTEGER" property="emPosition" />
+        <result column="em_status" jdbcType="INTEGER" property="emStatus" />
+        <result column="em_company" jdbcType="VARCHAR" property="emCompany" />
+        <result column="em_idcard" jdbcType="VARCHAR" property="emIdcard" />
+        <result column="em_createdate" jdbcType="TIMESTAMP" property="emCreatedate" />
+        <result column="em_leftdate" jdbcType="TIMESTAMP" property="emLeftdate" />
+        <result column="em_engname" jdbcType="VARCHAR" property="emEngname" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="file_id" jdbcType="INTEGER" property="fileId" />
+        <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+        <result column="wp_id" jdbcType="INTEGER" property="wpId" />
+    </resultMap>
+    <!--验证用户名密码是否正确-->
+    <select id="selectSysEmployeeByUsername" parameterType="string" resultType="com.ralei.pojo.SysEmployee">
+        SELECT e.em_id,
+        e.em_name,
+        e.em_phone,
+        e.em_position,
+        e.em_status,
+        e.em_company,
+        e.em_idcard,
+        e.em_createdate,
+        e.em_leftdate,
+        e.em_engname,
+        e.username,
+        e.password,
+        e.file_id,
+        e.dept_id,
+        e.wp_id,
+        e.em_question,
+        e.em_answer,
+        e.em_img from sys_employee e WHERE e.username=#{username} and e.password=#{password};
+    </select>
+
+    <!--通过用户名查询用户-->
+    <select id="selectEmployeeByEmPhone" parameterType="string" resultType="com.ralei.pojo.SysEmployee">
+         SELECT e.em_id,
+                e.em_name,
+                e.em_phone,
+                e.em_position,
+                e.em_status,
+                e.em_company,
+                e.em_idcard,
+                e.em_createdate,
+                e.em_leftdate,
+                e.em_engname,
+                e.username,
+                e.password,
+                e.file_id,
+                e.dept_id,
+                e.wp_id,
+                e.em_question,
+                e.em_answer,
+                e.em_img from sys_employee e WHERE e.username=#{username};
+    </select>
+
+    <!--用户名修改密码-->
+    <update id="updateEmployeeByEmPhone" parameterType="string">
+        UPDATE  sys_employee SET password=${password} WHERE username=#{username};
+    </update>
+
+    <!--验证密保答案-->
+    <select id="checkEmployeeAnswer" parameterType="string" resultType="string">
+        SELECT em_answer FROM sys_employee e WHERE e.username=#{username};
+    </select>
+</mapper>

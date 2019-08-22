@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ralei.dao.RlWorkplansMapper">
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.RlWorkplans">
+    <id column="wp_id" jdbcType="INTEGER" property="wpId" />
+    <result column="wp_name" jdbcType="VARCHAR" property="wpName" />
+    <result column="wp_startTime" jdbcType="TIMESTAMP" property="wpStarttime" />
+    <result column="wp_endTime" jdbcType="TIMESTAMP" property="wpEndtime" />
+    <result column="wp_content" jdbcType="VARCHAR" property="wpContent" />
+    <result column="wp_keypoint" jdbcType="INTEGER" property="wpKeypoint" />
+    <result column="wp_prospect_performance" jdbcType="INTEGER" property="wpProspectPerformance" />
+    <result column="wp_actual_performance" jdbcType="INTEGER" property="wpActualPerformance" />
+    <result column="wp_remark" jdbcType="VARCHAR" property="wpRemark" />
+    <result column="wp_createDate" jdbcType="TIMESTAMP" property="wpCreatedate" />
+    <result column="wp_status" jdbcType="INTEGER" property="wpStatus" />
+    <result column="em_id" jdbcType="INTEGER" property="emId" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    wp_id, wp_name, wp_startTime, wp_endTime, wp_content, wp_keypoint, wp_prospect_performance, 
+    wp_actual_performance, wp_remark, wp_createDate, wp_status, em_id, file_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rl_workplans
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rl_workplans
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.RlWorkplans">
+    insert into rl_workplans (wp_id, wp_name, wp_startTime, 
+      wp_endTime, wp_content, wp_keypoint, 
+      wp_prospect_performance, wp_actual_performance, 
+      wp_remark, wp_createDate, wp_status, 
+      em_id, file_id)
+    values (#{wpId,jdbcType=INTEGER}, #{wpName,jdbcType=VARCHAR}, #{wpStarttime,jdbcType=TIMESTAMP}, 
+      #{wpEndtime,jdbcType=TIMESTAMP}, #{wpContent,jdbcType=VARCHAR}, #{wpKeypoint,jdbcType=INTEGER}, 
+      #{wpProspectPerformance,jdbcType=INTEGER}, #{wpActualPerformance,jdbcType=INTEGER}, 
+      #{wpRemark,jdbcType=VARCHAR}, #{wpCreatedate,jdbcType=TIMESTAMP}, #{wpStatus,jdbcType=INTEGER}, 
+      #{emId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.RlWorkplans">
+    insert into rl_workplans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wpId != null">
+        wp_id,
+      </if>
+      <if test="wpName != null">
+        wp_name,
+      </if>
+      <if test="wpStarttime != null">
+        wp_startTime,
+      </if>
+      <if test="wpEndtime != null">
+        wp_endTime,
+      </if>
+      <if test="wpContent != null">
+        wp_content,
+      </if>
+      <if test="wpKeypoint != null">
+        wp_keypoint,
+      </if>
+      <if test="wpProspectPerformance != null">
+        wp_prospect_performance,
+      </if>
+      <if test="wpActualPerformance != null">
+        wp_actual_performance,
+      </if>
+      <if test="wpRemark != null">
+        wp_remark,
+      </if>
+      <if test="wpCreatedate != null">
+        wp_createDate,
+      </if>
+      <if test="wpStatus != null">
+        wp_status,
+      </if>
+      <if test="emId != null">
+        em_id,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+      <if test="wpName != null">
+        #{wpName,jdbcType=VARCHAR},
+      </if>
+      <if test="wpStarttime != null">
+        #{wpStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpEndtime != null">
+        #{wpEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpContent != null">
+        #{wpContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wpKeypoint != null">
+        #{wpKeypoint,jdbcType=INTEGER},
+      </if>
+      <if test="wpProspectPerformance != null">
+        #{wpProspectPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpActualPerformance != null">
+        #{wpActualPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpRemark != null">
+        #{wpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="wpCreatedate != null">
+        #{wpCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpStatus != null">
+        #{wpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emId != null">
+        #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.RlWorkplans">
+    update rl_workplans
+    <set>
+      <if test="wpName != null">
+        wp_name = #{wpName,jdbcType=VARCHAR},
+      </if>
+      <if test="wpStarttime != null">
+        wp_startTime = #{wpStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpEndtime != null">
+        wp_endTime = #{wpEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpContent != null">
+        wp_content = #{wpContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wpKeypoint != null">
+        wp_keypoint = #{wpKeypoint,jdbcType=INTEGER},
+      </if>
+      <if test="wpProspectPerformance != null">
+        wp_prospect_performance = #{wpProspectPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpActualPerformance != null">
+        wp_actual_performance = #{wpActualPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpRemark != null">
+        wp_remark = #{wpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="wpCreatedate != null">
+        wp_createDate = #{wpCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpStatus != null">
+        wp_status = #{wpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emId != null">
+        em_id = #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.RlWorkplans">
+    update rl_workplans
+    set wp_name = #{wpName,jdbcType=VARCHAR},
+      wp_startTime = #{wpStarttime,jdbcType=TIMESTAMP},
+      wp_endTime = #{wpEndtime,jdbcType=TIMESTAMP},
+      wp_content = #{wpContent,jdbcType=VARCHAR},
+      wp_keypoint = #{wpKeypoint,jdbcType=INTEGER},
+      wp_prospect_performance = #{wpProspectPerformance,jdbcType=INTEGER},
+      wp_actual_performance = #{wpActualPerformance,jdbcType=INTEGER},
+      wp_remark = #{wpRemark,jdbcType=VARCHAR},
+      wp_createDate = #{wpCreatedate,jdbcType=TIMESTAMP},
+      wp_status = #{wpStatus,jdbcType=INTEGER},
+      em_id = #{emId,jdbcType=INTEGER},
+      file_id = #{fileId,jdbcType=INTEGER}
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.RlWorkplans">
+    <id column="wp_id" jdbcType="INTEGER" property="wpId" />
+    <result column="wp_name" jdbcType="VARCHAR" property="wpName" />
+    <result column="wp_startTime" jdbcType="TIMESTAMP" property="wpStarttime" />
+    <result column="wp_endTime" jdbcType="TIMESTAMP" property="wpEndtime" />
+    <result column="wp_content" jdbcType="VARCHAR" property="wpContent" />
+    <result column="wp_keypoint" jdbcType="INTEGER" property="wpKeypoint" />
+    <result column="wp_prospect_performance" jdbcType="INTEGER" property="wpProspectPerformance" />
+    <result column="wp_actual_performance" jdbcType="INTEGER" property="wpActualPerformance" />
+    <result column="wp_remark" jdbcType="VARCHAR" property="wpRemark" />
+    <result column="wp_createDate" jdbcType="TIMESTAMP" property="wpCreatedate" />
+    <result column="wp_status" jdbcType="INTEGER" property="wpStatus" />
+    <result column="wp_employee" jdbcType="INTEGER" property="wpEmployee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    wp_id, wp_name, wp_startTime, wp_endTime, wp_content, wp_keypoint, wp_prospect_performance, 
+    wp_actual_performance, wp_remark, wp_createDate, wp_status, wp_employee
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rl_workplans
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rl_workplans
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.RlWorkplans">
+    insert into rl_workplans (wp_id, wp_name, wp_startTime, 
+      wp_endTime, wp_content, wp_keypoint, 
+      wp_prospect_performance, wp_actual_performance, 
+      wp_remark, wp_createDate, wp_status, 
+      wp_employee)
+    values (#{wpId,jdbcType=INTEGER}, #{wpName,jdbcType=VARCHAR}, #{wpStarttime,jdbcType=TIMESTAMP}, 
+      #{wpEndtime,jdbcType=TIMESTAMP}, #{wpContent,jdbcType=VARCHAR}, #{wpKeypoint,jdbcType=INTEGER}, 
+      #{wpProspectPerformance,jdbcType=INTEGER}, #{wpActualPerformance,jdbcType=INTEGER}, 
+      #{wpRemark,jdbcType=VARCHAR}, #{wpCreatedate,jdbcType=TIMESTAMP}, #{wpStatus,jdbcType=INTEGER}, 
+      #{wpEmployee,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.RlWorkplans">
+    insert into rl_workplans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wpId != null">
+        wp_id,
+      </if>
+      <if test="wpName != null">
+        wp_name,
+      </if>
+      <if test="wpStarttime != null">
+        wp_startTime,
+      </if>
+      <if test="wpEndtime != null">
+        wp_endTime,
+      </if>
+      <if test="wpContent != null">
+        wp_content,
+      </if>
+      <if test="wpKeypoint != null">
+        wp_keypoint,
+      </if>
+      <if test="wpProspectPerformance != null">
+        wp_prospect_performance,
+      </if>
+      <if test="wpActualPerformance != null">
+        wp_actual_performance,
+      </if>
+      <if test="wpRemark != null">
+        wp_remark,
+      </if>
+      <if test="wpCreatedate != null">
+        wp_createDate,
+      </if>
+      <if test="wpStatus != null">
+        wp_status,
+      </if>
+      <if test="wpEmployee != null">
+        wp_employee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+      <if test="wpName != null">
+        #{wpName,jdbcType=VARCHAR},
+      </if>
+      <if test="wpStarttime != null">
+        #{wpStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpEndtime != null">
+        #{wpEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpContent != null">
+        #{wpContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wpKeypoint != null">
+        #{wpKeypoint,jdbcType=INTEGER},
+      </if>
+      <if test="wpProspectPerformance != null">
+        #{wpProspectPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpActualPerformance != null">
+        #{wpActualPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpRemark != null">
+        #{wpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="wpCreatedate != null">
+        #{wpCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpStatus != null">
+        #{wpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="wpEmployee != null">
+        #{wpEmployee,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.RlWorkplans">
+    update rl_workplans
+    <set>
+      <if test="wpName != null">
+        wp_name = #{wpName,jdbcType=VARCHAR},
+      </if>
+      <if test="wpStarttime != null">
+        wp_startTime = #{wpStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpEndtime != null">
+        wp_endTime = #{wpEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpContent != null">
+        wp_content = #{wpContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wpKeypoint != null">
+        wp_keypoint = #{wpKeypoint,jdbcType=INTEGER},
+      </if>
+      <if test="wpProspectPerformance != null">
+        wp_prospect_performance = #{wpProspectPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpActualPerformance != null">
+        wp_actual_performance = #{wpActualPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="wpRemark != null">
+        wp_remark = #{wpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="wpCreatedate != null">
+        wp_createDate = #{wpCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wpStatus != null">
+        wp_status = #{wpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="wpEmployee != null">
+        wp_employee = #{wpEmployee,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.RlWorkplans">
+    update rl_workplans
+    set wp_name = #{wpName,jdbcType=VARCHAR},
+      wp_startTime = #{wpStarttime,jdbcType=TIMESTAMP},
+      wp_endTime = #{wpEndtime,jdbcType=TIMESTAMP},
+      wp_content = #{wpContent,jdbcType=VARCHAR},
+      wp_keypoint = #{wpKeypoint,jdbcType=INTEGER},
+      wp_prospect_performance = #{wpProspectPerformance,jdbcType=INTEGER},
+      wp_actual_performance = #{wpActualPerformance,jdbcType=INTEGER},
+      wp_remark = #{wpRemark,jdbcType=VARCHAR},
+      wp_createDate = #{wpCreatedate,jdbcType=TIMESTAMP},
+      wp_status = #{wpStatus,jdbcType=INTEGER},
+      wp_employee = #{wpEmployee,jdbcType=INTEGER}
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+</mapper>

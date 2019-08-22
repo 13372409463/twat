@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ralei.dao.performancedao.PerformanceDao">
+    <resultMap id="BaseResultMap" type="com.ralei.pojo.RlWorkplans" >
+        <id column="wp_id" property="wpId" jdbcType="INTEGER" />
+        <result column="wp_name" property="wpName" jdbcType="VARCHAR" />
+        <result column="wp_startTime" property="wpStarttime" jdbcType="TIMESTAMP" />
+        <result column="wp_endTime" property="wpEndtime" jdbcType="TIMESTAMP" />
+        <result column="wp_content" property="wpContent" jdbcType="VARCHAR" />
+        <result column="wp_keypoint" property="wpKeypoint" jdbcType="INTEGER" />
+        <result column="wp_prospect_performance" property="wpProspectPerformance" jdbcType="INTEGER" />
+        <result column="wp_actual_performance" property="wpActualPerformance" jdbcType="INTEGER" />
+        <result column="wp_remark" property="wpRemark" jdbcType="VARCHAR" />
+        <result column="wp_createDate" property="wpCreatedate" jdbcType="TIMESTAMP" />
+        <result column="wp_status" property="wpStatus" jdbcType="INTEGER" />
+        <result column="wp_employee" property="wpEmployee" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!--个人绩效查询-->
+    <sql id="Base_Column_List" >
+        wp_id, wp_name, wp_startTime, wp_endTime, wp_content, wp_keypoint, wp_prospect_performance,
+        wp_actual_performance, wp_remark, wp_createDate, wp_status, wp_employee
+    </sql>
+    <select id="">
+        select
+        <include refid="Base_Column_List" />
+        from rl_workplans
+        where em_id = #{emId,jdbcType=INTEGER}
+    </select>
+</mapper>

@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ralei.dao.SysEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+      <id column="em_id" jdbcType="INTEGER" property="emId" />
+      <result column="em_name" jdbcType="VARCHAR" property="emName" />
+      <result column="em_phone" jdbcType="VARCHAR" property="emPhone" />
+      <result column="em_position" jdbcType="INTEGER" property="emPosition" />
+      <result column="em_status" jdbcType="INTEGER" property="emStatus" />
+      <result column="em_company" jdbcType="VARCHAR" property="emCompany" />
+      <result column="em_idcard" jdbcType="VARCHAR" property="emIdcard" />
+      <result column="em_createdate" jdbcType="TIMESTAMP" property="emCreatedate" />
+      <result column="em_leftdate" jdbcType="TIMESTAMP" property="emLeftdate" />
+      <result column="em_engname" jdbcType="VARCHAR" property="emEngname" />
+      <result column="username" jdbcType="VARCHAR" property="username" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="file_id" jdbcType="INTEGER" property="fileId" />
+      <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+      <result column="wp_id" jdbcType="INTEGER" property="wpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    em_id, em_name, em_phone, em_position, em_status, em_company, em_idcard, em_createdate, 
+    em_leftdate, em_engname, username, password, file_id, dept_id, wp_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee (em_id, em_name, em_phone, 
+      em_position, em_status, em_company, 
+      em_idcard, em_createdate, em_leftdate, 
+      em_engname, username, password, 
+      file_id, dept_id, wp_id
+      )
+    values (#{emId,jdbcType=INTEGER}, #{emName,jdbcType=VARCHAR}, #{emPhone,jdbcType=VARCHAR}, 
+      #{emPosition,jdbcType=INTEGER}, #{emStatus,jdbcType=INTEGER}, #{emCompany,jdbcType=VARCHAR}, 
+      #{emIdcard,jdbcType=VARCHAR}, #{emCreatedate,jdbcType=TIMESTAMP}, #{emLeftdate,jdbcType=TIMESTAMP}, 
+      #{emEngname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{wpId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        em_id,
+      </if>
+      <if test="emName != null">
+        em_name,
+      </if>
+      <if test="emPhone != null">
+        em_phone,
+      </if>
+      <if test="emPosition != null">
+        em_position,
+      </if>
+      <if test="emStatus != null">
+        em_status,
+      </if>
+      <if test="emCompany != null">
+        em_company,
+      </if>
+      <if test="emIdcard != null">
+        em_idcard,
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate,
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate,
+      </if>
+      <if test="emEngname != null">
+        em_engname,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="wpId != null">
+        wp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="emName != null">
+        #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    <set>
+      <if test="emName != null">
+        em_name = #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        em_phone = #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        em_position = #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        em_status = #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        em_company = #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        em_engname = #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        wp_id = #{wpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    set em_name = #{emName,jdbcType=VARCHAR},
+      em_phone = #{emPhone,jdbcType=VARCHAR},
+      em_position = #{emPosition,jdbcType=INTEGER},
+      em_status = #{emStatus,jdbcType=INTEGER},
+      em_company = #{emCompany,jdbcType=VARCHAR},
+      em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      em_engname = #{emEngname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      file_id = #{fileId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      wp_id = #{wpId,jdbcType=INTEGER}
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+    <id column="em_id" jdbcType="INTEGER" property="emId" />
+    <result column="em_name" jdbcType="VARCHAR" property="emName" />
+    <result column="em_phone" jdbcType="VARCHAR" property="emPhone" />
+    <result column="em_position" jdbcType="INTEGER" property="emPosition" />
+    <result column="em_status" jdbcType="INTEGER" property="emStatus" />
+    <result column="em_company" jdbcType="VARCHAR" property="emCompany" />
+    <result column="em_idcard" jdbcType="VARCHAR" property="emIdcard" />
+    <result column="em_createdate" jdbcType="TIMESTAMP" property="emCreatedate" />
+    <result column="em_leftdate" jdbcType="TIMESTAMP" property="emLeftdate" />
+    <result column="em_engname" jdbcType="VARCHAR" property="emEngname" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="wp_id" jdbcType="INTEGER" property="wpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    em_id, em_name, em_phone, em_position, em_status, em_company, em_idcard, em_createdate, 
+    em_leftdate, em_engname, username, password, file_id, dept_id, wp_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee (em_id, em_name, em_phone, 
+      em_position, em_status, em_company, 
+      em_idcard, em_createdate, em_leftdate, 
+      em_engname, username, password, 
+      file_id, dept_id, wp_id
+      )
+    values (#{emId,jdbcType=INTEGER}, #{emName,jdbcType=VARCHAR}, #{emPhone,jdbcType=VARCHAR}, 
+      #{emPosition,jdbcType=INTEGER}, #{emStatus,jdbcType=INTEGER}, #{emCompany,jdbcType=VARCHAR}, 
+      #{emIdcard,jdbcType=VARCHAR}, #{emCreatedate,jdbcType=TIMESTAMP}, #{emLeftdate,jdbcType=TIMESTAMP}, 
+      #{emEngname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{wpId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        em_id,
+      </if>
+      <if test="emName != null">
+        em_name,
+      </if>
+      <if test="emPhone != null">
+        em_phone,
+      </if>
+      <if test="emPosition != null">
+        em_position,
+      </if>
+      <if test="emStatus != null">
+        em_status,
+      </if>
+      <if test="emCompany != null">
+        em_company,
+      </if>
+      <if test="emIdcard != null">
+        em_idcard,
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate,
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate,
+      </if>
+      <if test="emEngname != null">
+        em_engname,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="wpId != null">
+        wp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="emName != null">
+        #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    <set>
+      <if test="emName != null">
+        em_name = #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        em_phone = #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        em_position = #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        em_status = #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        em_company = #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        em_engname = #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        wp_id = #{wpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    set em_name = #{emName,jdbcType=VARCHAR},
+      em_phone = #{emPhone,jdbcType=VARCHAR},
+      em_position = #{emPosition,jdbcType=INTEGER},
+      em_status = #{emStatus,jdbcType=INTEGER},
+      em_company = #{emCompany,jdbcType=VARCHAR},
+      em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      em_engname = #{emEngname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      file_id = #{fileId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      wp_id = #{wpId,jdbcType=INTEGER}
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+    <id column="em_id" jdbcType="INTEGER" property="emId" />
+    <result column="em_name" jdbcType="VARCHAR" property="emName" />
+    <result column="em_phone" jdbcType="VARCHAR" property="emPhone" />
+    <result column="em_position" jdbcType="INTEGER" property="emPosition" />
+    <result column="em_status" jdbcType="INTEGER" property="emStatus" />
+    <result column="em_company" jdbcType="VARCHAR" property="emCompany" />
+    <result column="em_idcard" jdbcType="VARCHAR" property="emIdcard" />
+    <result column="em_createdate" jdbcType="TIMESTAMP" property="emCreatedate" />
+    <result column="em_leftdate" jdbcType="TIMESTAMP" property="emLeftdate" />
+    <result column="em_engname" jdbcType="VARCHAR" property="emEngname" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="wp_id" jdbcType="INTEGER" property="wpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    em_id, em_name, em_phone, em_position, em_status, em_company, em_idcard, em_createdate, 
+    em_leftdate, em_engname, username, password, file_id, dept_id, wp_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee (em_id, em_name, em_phone, 
+      em_position, em_status, em_company, 
+      em_idcard, em_createdate, em_leftdate, 
+      em_engname, username, password, 
+      file_id, dept_id, wp_id
+      )
+    values (#{emId,jdbcType=INTEGER}, #{emName,jdbcType=VARCHAR}, #{emPhone,jdbcType=VARCHAR}, 
+      #{emPosition,jdbcType=INTEGER}, #{emStatus,jdbcType=INTEGER}, #{emCompany,jdbcType=VARCHAR}, 
+      #{emIdcard,jdbcType=VARCHAR}, #{emCreatedate,jdbcType=TIMESTAMP}, #{emLeftdate,jdbcType=TIMESTAMP}, 
+      #{emEngname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{wpId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        em_id,
+      </if>
+      <if test="emName != null">
+        em_name,
+      </if>
+      <if test="emPhone != null">
+        em_phone,
+      </if>
+      <if test="emPosition != null">
+        em_position,
+      </if>
+      <if test="emStatus != null">
+        em_status,
+      </if>
+      <if test="emCompany != null">
+        em_company,
+      </if>
+      <if test="emIdcard != null">
+        em_idcard,
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate,
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate,
+      </if>
+      <if test="emEngname != null">
+        em_engname,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="wpId != null">
+        wp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="emName != null">
+        #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    <set>
+      <if test="emName != null">
+        em_name = #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        em_phone = #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        em_position = #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        em_status = #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        em_company = #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        em_engname = #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        wp_id = #{wpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    set em_name = #{emName,jdbcType=VARCHAR},
+      em_phone = #{emPhone,jdbcType=VARCHAR},
+      em_position = #{emPosition,jdbcType=INTEGER},
+      em_status = #{emStatus,jdbcType=INTEGER},
+      em_company = #{emCompany,jdbcType=VARCHAR},
+      em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      em_engname = #{emEngname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      file_id = #{fileId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      wp_id = #{wpId,jdbcType=INTEGER}
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+    <id column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="dept_address" jdbcType="VARCHAR" property="deptAddress" />
+    <result column="dept_company" jdbcType="VARCHAR" property="deptCompany" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dept_id, dept_name, dept_address, dept_company
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rl_dept
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rl_dept
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.SysEmployee">
+    insert into rl_dept (dept_id, dept_name, dept_address, 
+      dept_company)
+    values (#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR}, #{deptAddress,jdbcType=VARCHAR}, 
+      #{deptCompany,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.SysEmployee">
+    insert into rl_dept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="deptAddress != null">
+        dept_address,
+      </if>
+      <if test="deptCompany != null">
+        dept_company,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null">
+        #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCompany != null">
+        #{deptCompany,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.SysEmployee">
+    update rl_dept
+    <set>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null">
+        dept_address = #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCompany != null">
+        dept_company = #{deptCompany,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.SysEmployee">
+    update rl_dept
+    set dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_address = #{deptAddress,jdbcType=VARCHAR},
+      dept_company = #{deptCompany,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+    <id column="em_id" jdbcType="INTEGER" property="emId" />
+    <result column="em_name" jdbcType="VARCHAR" property="emName" />
+    <result column="em_phone" jdbcType="VARCHAR" property="emPhone" />
+    <result column="em_position" jdbcType="INTEGER" property="emPosition" />
+    <result column="em_status" jdbcType="INTEGER" property="emStatus" />
+    <result column="em_company" jdbcType="VARCHAR" property="emCompany" />
+    <result column="em_idcard" jdbcType="VARCHAR" property="emIdcard" />
+    <result column="em_createdate" jdbcType="TIMESTAMP" property="emCreatedate" />
+    <result column="em_leftdate" jdbcType="TIMESTAMP" property="emLeftdate" />
+    <result column="em_engname" jdbcType="VARCHAR" property="emEngname" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="wp_id" jdbcType="INTEGER" property="wpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    em_id, em_name, em_phone, em_position, em_status, em_company, em_idcard, em_createdate, 
+    em_leftdate, em_engname, username, password, file_id, dept_id, wp_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee (em_id, em_name, em_phone, 
+      em_position, em_status, em_company, 
+      em_idcard, em_createdate, em_leftdate, 
+      em_engname, username, password, 
+      file_id, dept_id, wp_id
+      )
+    values (#{emId,jdbcType=INTEGER}, #{emName,jdbcType=VARCHAR}, #{emPhone,jdbcType=VARCHAR}, 
+      #{emPosition,jdbcType=INTEGER}, #{emStatus,jdbcType=INTEGER}, #{emCompany,jdbcType=VARCHAR}, 
+      #{emIdcard,jdbcType=VARCHAR}, #{emCreatedate,jdbcType=TIMESTAMP}, #{emLeftdate,jdbcType=TIMESTAMP}, 
+      #{emEngname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{wpId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        em_id,
+      </if>
+      <if test="emName != null">
+        em_name,
+      </if>
+      <if test="emPhone != null">
+        em_phone,
+      </if>
+      <if test="emPosition != null">
+        em_position,
+      </if>
+      <if test="emStatus != null">
+        em_status,
+      </if>
+      <if test="emCompany != null">
+        em_company,
+      </if>
+      <if test="emIdcard != null">
+        em_idcard,
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate,
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate,
+      </if>
+      <if test="emEngname != null">
+        em_engname,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="wpId != null">
+        wp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="emName != null">
+        #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    <set>
+      <if test="emName != null">
+        em_name = #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        em_phone = #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        em_position = #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        em_status = #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        em_company = #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        em_engname = #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        wp_id = #{wpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    set em_name = #{emName,jdbcType=VARCHAR},
+      em_phone = #{emPhone,jdbcType=VARCHAR},
+      em_position = #{emPosition,jdbcType=INTEGER},
+      em_status = #{emStatus,jdbcType=INTEGER},
+      em_company = #{emCompany,jdbcType=VARCHAR},
+      em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      em_engname = #{emEngname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      file_id = #{fileId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      wp_id = #{wpId,jdbcType=INTEGER}
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ralei.pojo.SysEmployee">
+    <id column="em_id" jdbcType="INTEGER" property="emId" />
+    <result column="em_name" jdbcType="VARCHAR" property="emName" />
+    <result column="em_phone" jdbcType="VARCHAR" property="emPhone" />
+    <result column="em_position" jdbcType="INTEGER" property="emPosition" />
+    <result column="em_status" jdbcType="INTEGER" property="emStatus" />
+    <result column="em_company" jdbcType="VARCHAR" property="emCompany" />
+    <result column="em_idcard" jdbcType="VARCHAR" property="emIdcard" />
+    <result column="em_createdate" jdbcType="TIMESTAMP" property="emCreatedate" />
+    <result column="em_leftdate" jdbcType="TIMESTAMP" property="emLeftdate" />
+    <result column="em_engname" jdbcType="VARCHAR" property="emEngname" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="wp_id" jdbcType="INTEGER" property="wpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    em_id, em_name, em_phone, em_position, em_status, em_company, em_idcard, em_createdate, 
+    em_leftdate, em_engname, username, password, file_id, dept_id, wp_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee
+    where em_id = #{emId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee (em_id, em_name, em_phone, 
+      em_position, em_status, em_company, 
+      em_idcard, em_createdate, em_leftdate, 
+      em_engname, username, password, 
+      file_id, dept_id, wp_id
+      )
+    values (#{emId,jdbcType=INTEGER}, #{emName,jdbcType=VARCHAR}, #{emPhone,jdbcType=VARCHAR}, 
+      #{emPosition,jdbcType=INTEGER}, #{emStatus,jdbcType=INTEGER}, #{emCompany,jdbcType=VARCHAR}, 
+      #{emIdcard,jdbcType=VARCHAR}, #{emCreatedate,jdbcType=TIMESTAMP}, #{emLeftdate,jdbcType=TIMESTAMP}, 
+      #{emEngname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER}, #{wpId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ralei.pojo.SysEmployee">
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        em_id,
+      </if>
+      <if test="emName != null">
+        em_name,
+      </if>
+      <if test="emPhone != null">
+        em_phone,
+      </if>
+      <if test="emPosition != null">
+        em_position,
+      </if>
+      <if test="emStatus != null">
+        em_status,
+      </if>
+      <if test="emCompany != null">
+        em_company,
+      </if>
+      <if test="emIdcard != null">
+        em_idcard,
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate,
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate,
+      </if>
+      <if test="emEngname != null">
+        em_engname,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="wpId != null">
+        wp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="emId != null">
+        #{emId,jdbcType=INTEGER},
+      </if>
+      <if test="emName != null">
+        #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    <set>
+      <if test="emName != null">
+        em_name = #{emName,jdbcType=VARCHAR},
+      </if>
+      <if test="emPhone != null">
+        em_phone = #{emPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emPosition != null">
+        em_position = #{emPosition,jdbcType=INTEGER},
+      </if>
+      <if test="emStatus != null">
+        em_status = #{emStatus,jdbcType=INTEGER},
+      </if>
+      <if test="emCompany != null">
+        em_company = #{emCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="emIdcard != null">
+        em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="emCreatedate != null">
+        em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emLeftdate != null">
+        em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emEngname != null">
+        em_engname = #{emEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="wpId != null">
+        wp_id = #{wpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ralei.pojo.SysEmployee">
+    update sys_employee
+    set em_name = #{emName,jdbcType=VARCHAR},
+      em_phone = #{emPhone,jdbcType=VARCHAR},
+      em_position = #{emPosition,jdbcType=INTEGER},
+      em_status = #{emStatus,jdbcType=INTEGER},
+      em_company = #{emCompany,jdbcType=VARCHAR},
+      em_idcard = #{emIdcard,jdbcType=VARCHAR},
+      em_createdate = #{emCreatedate,jdbcType=TIMESTAMP},
+      em_leftdate = #{emLeftdate,jdbcType=TIMESTAMP},
+      em_engname = #{emEngname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      file_id = #{fileId,jdbcType=INTEGER},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      wp_id = #{wpId,jdbcType=INTEGER}
+    where em_id = #{emId,jdbcType=INTEGER}
+  </update>
+
+
+  <!--查询所有人员列表-->
+  <select id="selectEmployeeUserList" resultType="list">
+     SELECT e.em_id,
+        e.em_name,
+        e.em_phone,
+        e.em_position,
+        e.em_status,
+        e.em_company,
+        e.em_idcard,
+        e.em_createdate,
+        e.em_leftdate,
+        e.em_engname,
+        e.username,
+        e.password,
+        e.file_id,
+        e.dept_id,
+        e.wp_id,
+        e.em_question,
+        e.em_answer,
+        e.em_img from sys_employee e
+  </select>
+</mapper>

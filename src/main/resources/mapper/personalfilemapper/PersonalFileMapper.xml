@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ralei.dao.personalfiledao.PersonalFileDao" >
+    <resultMap id="BaseResultMap" type="com.ralei.pojo.SysFileUpload" >
+        <id column="file_id" property="fileId" jdbcType="INTEGER" />
+        <result column="file_createDate" property="fileCreatedate" jdbcType="TIMESTAMP" />
+        <result column="file_deleteDate" property="fileDeletedate" jdbcType="TIMESTAMP" />
+        <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+        <result column="file_readAccount" property="fileReadaccount" jdbcType="INTEGER" />
+        <result column="file_priority" property="filePriority" jdbcType="INTEGER" />
+        <result column="file_kinds" property="fileKinds" jdbcType="INTEGER" />
+        <result column="file_status" property="fileStatus" jdbcType="INTEGER" />
+        <result column="action_id" property="actionId" jdbcType="INTEGER" />
+        <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+        <result column="file_uploader" property="fileUploader" jdbcType="VARCHAR" />
+        <result column="em_id" property="emId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!--我的文件上传列表-->
+    <select id="selectFileListByemId" parameterType="integer" resultType="com.ralei.pojo.SysFileUpload">
+        SELECT f.file_id,
+               f.file_createDate,
+               f.file_deleteDate,
+               f.file_path,
+               f.file_readAccount,
+               f.file_priority,
+               f.file_kinds,
+               f.file_status,
+               f.action_id,
+               f.file_name,
+               f.file_uploader,
+               f.em_id FROM
+               sys_fileupload AS f WHERE em_id=#{emId,jdbcType="INTEGER"} AND file_status=1
+    </select>
+
+    <!--删除文件-->
+    <delete id="deleteFileByFileId" parameterType="integer">
+        UPDATE sys_fileupload SET file_status=0 WHERE file_id=#{fileId,jdbcType="INTEGER"}
+    </delete>
+
+    <!--删除文件后添加该文件的操作记录-->
+    <insert id="addRlActionRecord" parameterType="com.ralei.pojo.RlActionRecord">
+      insert into rl_action_record (action_id, action_time, action_kinds,
+      action_name, file_id)
+      values (#{actionId,jdbcType=INTEGER}, #{actionTime,jdbcType=TIMESTAMP}, #{actionKinds,jdbcType=INTEGER},
+      #{actionName,jdbcType=VARCHAR}, #{fileId,jdbcType=INTEGER})
+    </insert>
+
+</mapper>
